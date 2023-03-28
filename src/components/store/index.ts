@@ -13,12 +13,12 @@ import storage from 'redux-persist/lib/storage';
 
 import filterReducer from './slices/filterSlice';
 import appThemeReducer from './slices/appThemeSlice';
-import authReducer from './slices/authSlice';
+import notesReducer from './slices/notesSlice';
 
 const rootReducer = combineReducers({
   filter: filterReducer,
   appTheme: appThemeReducer,
-  auth: authReducer,
+  notes: notesReducer,
 });
 
 const persistConfig = {

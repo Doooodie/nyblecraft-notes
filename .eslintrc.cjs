@@ -28,6 +28,7 @@ module.exports = {
   },
   plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier'],
   rules: {
+    'react/jsx-props-no-spreading': 'off',
     'import/no-extraneous-dependencies': [
       'error',
       {
