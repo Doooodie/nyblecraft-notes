@@ -11,12 +11,10 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import filterReducer from './slices/filterSlice';
 import appThemeReducer from './slices/appThemeSlice';
 import notesReducer from './slices/notesSlice';
 
 const rootReducer = combineReducers({
-  filter: filterReducer,
   appTheme: appThemeReducer,
   notes: notesReducer,
 });
@@ -24,7 +22,6 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['filter'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

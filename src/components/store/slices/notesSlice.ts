@@ -32,14 +32,8 @@ const notesSlice = createSlice({
         thisNote.tags = action.payload.tags;
       }
     },
-    removeTag(state, action: PayloadAction<TNote>) {
-      const thisNote = state.notes.find((note) => note.id === action.payload.id);
-      if (thisNote) {
-        thisNote.tags = thisNote.tags.filter((tag) => tag !== action.payload.content);
-      }
-    },
   },
 });
 
-export const { addNote, removeNote, changeNote, removeTag } = notesSlice.actions;
+export const { addNote, removeNote, changeNote } = notesSlice.actions;
 export default notesSlice.reducer;

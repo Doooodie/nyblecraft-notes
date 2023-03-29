@@ -1,33 +1,36 @@
 import { Card, CardActions, CardContent, Button, Typography, Chip, Stack } from '@mui/material';
 
-import { TNote } from '../../store/slices/notesSlice';
+import { TNote, removeNote } from '../../store/slices/notesSlice';
+import { useAppDispatch } from '../../hooks/hooks';
+import ChangeNote from './ChangeNote';
 
-type NoteProps = {
+export type NoteProps = {
   note: TNote;
 };
 
 function Note({ note }: NoteProps) {
+  const dispatch = useAppDispatch();
   const { content, tags, id } = note;
-
-  const handleDelete = () => {
-    return 1;
-  };
 
   return (
     <Card sx={{ maxWidth: 250 }}>
       <CardContent>
         <Stack spacing={2} alignItems='flex-start'>
           <Typography>{content}</Typography>
-          <Stack direction='row' spacing={1}>
-            {tags.map((tag) => (
-              <Chip label={tag} onClick={handleDelete} onDelete={handleDelete} key={id} />
-            ))}
-          </Stack>
+          {tags.length ? (
+            <Stack direction='row' spacing={1}>
+              {tags.map((tag) => (
+                <Chip label={tag} key={tag} />
+              ))}
+            </Stack>
+          ) : (
+            <Chip label='No tags' />
+          )}
         </Stack>
       </CardContent>
       <CardActions>
-        <Button>Edit</Button>
-        <Button>Remove</Button>
+        <ChangeNote note={note} />
+        <Button onClick={() => dispatch(removeNote(id))}>Remove</Button>
       </CardActions>
     </Card>
   );
